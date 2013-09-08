@@ -4,7 +4,7 @@
 
 	<meta charset="utf-8">
 	
-	<title></title>
+	<title>Travel planner</title>
 	
 	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
 	<meta name="HandheldFriendly" content="True">
@@ -25,41 +25,39 @@
 </head>
 <body>
 <!-- Home -->
-    <div id="Main">
-        <section data-role="page">
-            <header data-role="header" data-position="fixed"><h1>Travel Planner</h1></header>
+    
+        <section id="Main" data-role="page">
+            <header data-role="header" data-position="fixed"><h1>Camp Planner</h1></header>
             
-             <section data-role="content">
-                 <p></p>
+               <div class="content" data-role="content">
+                                  
+               <div style="width: 288px; height: 130px; position: relative; border: 0px solid #000000;">
+                  <img src="images/dreamstimecomp_24162783Camping.png" alt="Untitled-1.jpg" width="288" height="130" alt="image" style="position: relative; top: 50%; left: 50%; margin-left: -144px; margin-top: -66px">
+               </div>
                
-        </section>
-           
-        <div data-theme="" data-role="footer" data-position="fixed">
-        <div data-role="navbar" data-iconpos="top">
-            <ul>
-                <li>
-                    <a href="#page1" data-transition="fade" data-theme="a" data-icon="home">
-                        Home
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="#pageN" data-transition="fade" data-theme="a" data-icon="info">
-                        View
-                    </a>
-                </li>
-                <li>
-                    <a href="#page2" data-transition="fade" data-theme="a" data-icon="add">
-                        Add
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-
-        </section>
-
+                       <a href="#addItem" data-role="button" >Add Camping Trip</a>          
+       
+        <div data-role="controlgroup">
+            <a href="#pageForm" data-role="button">View Trips</a>
+            <a href="#pageInfo" data-role="button">Info</a>        
+            </div>    
     </div>
+       
+<!--form-->  
+               
+           
+           
+           
+           
+           
+           
+           
+               
+             
+            <footer data-role="footer" data-position="fixed"><h1>Camp Planner</h1></footer>
+         
+
+    
 
 
 
