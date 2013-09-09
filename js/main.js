@@ -1,6 +1,6 @@
 //alert("javaScript works");
 // Matthew Darke
-//ASD 1309 Project1
+//ASD 1309 Project
 
 $('#home').on('pageinit', function(){
 	//code needed for home page goes here
