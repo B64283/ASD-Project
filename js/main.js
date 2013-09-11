@@ -93,18 +93,7 @@ var clearLocal = function(){
  	  
  	  
  	  
- 	   	/*var toChangePage = function (toPageId) {
-        $.mobile.changePage("#" + toPageId , {
-            type:"post",
-            data:$("form").serialize(),
-            reloadPage:true
-        
-        });
-        });*/
-    
- 	   	 	   	
- 
-
+ 	   
 
 
 
