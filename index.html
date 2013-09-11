@@ -28,12 +28,12 @@
 <body>
 <!-- Home -->
     
-    <section id="page1" data-role="page">
+    <section id="page1" data-role="page" data-theme="a">
         <header data-role="header" data-position="fixed"><h1>Camp Planner</h1></header>
             
             <div class="content" data-role="content">
                <a href="#home">                   
-            <div style="width: 288px; height: 130px; position: relative; border: 0px solid #000000;">
+            <div style="width: 288px; height: 130px; position: relative; background-color: #000000; border: 0px solid #000000;">
                <img src="images/dreamstimecomp_24162783Camping.png" alt="Untitled-1.jpg" width="288" height="130" alt="image" style="position: relative; top: 50%; left: 50%; margin-left: -144px; margin-top: -66px">
             </div>
                
@@ -65,7 +65,7 @@
         
         </section>
 <!--form-->  
-<div data-role="page" id="addItem" data-theme="a" data-position="fixed">
+<div data-role="page" id="addItem" data-theme="" data-position="fixed">
     <div data-theme="a" data-role="header" >
          <h3> Form</h3> 
     </div>
@@ -78,7 +78,7 @@
             <label for="TravelType">
                 *Camping Category
             </label>
-            <select id="CampingType" name="CampingType" data-theme="a" data-mini="true" class="required" />
+            <select id="CampingType" name="CampingType" data-theme="" data-mini="true" class="required" />
                <option value="family">
                     Family
                 </option>
@@ -118,8 +118,8 @@
         
         <div data-role="navbar">
            <ul>
-               <li><input type="submit" id="submit" data-theme="a" value="SUBMIT"/></li>
-               <li><input type="reset" id="reset" value="RESET" data-theme="a" data-icon="delete" data-mini="true"/></li>       
+               <li><input type="submit" id="submit" data-theme="" value="SUBMIT"/></li>
+               <li><input type="reset" id="reset" value="RESET" data-theme="" data-icon="delete" data-mini="true"/></li>       
            </ul>
         </div>
          

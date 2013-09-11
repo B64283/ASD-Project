@@ -7,8 +7,8 @@ console.log("Page one loaded.");
  });
 		
 $('#addItem').on('pageinit', function(){
-console.log("Form loaded.")
-var myForm = $('#travelForm');
+console.log("Form loaded.");
+var myForm = $('#campingForm');
 		    tterrorsLink	= $ ("#tterrorsLink");	    
 		    
 		myForm.validate({
@@ -17,12 +17,12 @@ var myForm = $('#travelForm');
 			     //var html= ' ';
 			     for(var key in validator.submitted){
 			      var label = $(' label[for^=" ' + key +' "]'); 
-			       //var legend = label.closest('fieldset').find('.label');
-			       //var fieldName = legend.length ? legend.text() : label.text(); 
-			        //html += '<li>'+ fieldName +'</li>';  
+			       var legend = label.closest('fieldset').find('.label');
+			       var fieldName = legend.length ? legend.text() : label.text(); 
+			        html += '<li>'+ fieldName +'</li>';  
 			     
 			     };
-			    //$("#TravelTypeErrors ul").html(html);
+			    $("#TravelTypeErrors ul").html(html);
 			},
 			submitHandler: function() {
 		var data = myForm.serializeArray();
@@ -65,7 +65,7 @@ var storeData = function(data, key){
 	   alert("Travel plan complete!");
  	   	
 	  
-}; 
+} 
  	var	deleteItem = function (){
 	};		
  //get local storage
