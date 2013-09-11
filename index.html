@@ -4,8 +4,10 @@
 
 	<meta charset="utf-8">
 	
-	<title></title>
-	
+	<title>Camping planner</title>
+	<meta name="author" content="Matthew Darke">
+	<meta name="description" content="indexPage for the camp planner">
+	<meta name="robots" content="index, follow">	
 	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
 	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320"/>
@@ -16,7 +18,7 @@
 	
 	<!-- StyleSheets under here -->
 	<!link rel="stylesheet" href="themes/Awesome.min.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />	
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />	
 	<link rel="stylesheet" href="css/style.css" />
 	
 	<!-- JavaScript is normally at the end of the body, except for Modernizr which enables HTML5 elements & feature detects -->
@@ -25,3 +27,196 @@
 </head>
 <body>
 <!-- Home -->
+    
+    <section id="page1" data-role="page">
+        <header data-role="header" data-position="fixed"><h1>Camp Planner</h1></header>
+            
+            <div class="content" data-role="content">
+               <a href="#home">                   
+            <div style="width: 288px; height: 130px; position: relative; border: 0px solid #000000;">
+               <img src="images/dreamstimecomp_24162783Camping.png" alt="Untitled-1.jpg" width="288" height="130" alt="image" style="position: relative; top: 50%; left: 50%; margin-left: -144px; margin-top: -66px">
+            </div>
+               
+               <a href="#addItem" data-role="button" >Add Camping Trip</a>          
+       
+       <div data-theme="" data-role="footer" data-position="fixed"> 
+        <div data-role="navbar" data-iconpos="top">
+            
+            <ul>
+                <li>
+                    <a href="#pageInfo" data-transition="fade" data-theme="a" data-icon="info">
+                        Info
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#pageN" data-transition="fade" data-theme="a" data-icon="check">
+                        Gear Checklist
+                    </a>
+                </li>
+                <li>
+                    <a href="#pageView" data-transition="fade" data-theme="a" data-icon="info">
+                        View
+                    </a>
+                </li>
+            </ul>
+        </div>
+         </div>
+        
+        </section>
+<!--form-->  
+<div data-role="page" id="addItem" data-theme="a" data-position="fixed">
+    <div data-theme="a" data-role="header" >
+         <h3> Form</h3> 
+    </div>
+    
+    <div data-role="content">
+      <form action="" id="campingForm" >
+       
+        <div data-role="fieldcontain">
+        
+            <label for="TravelType">
+                *Camping Category
+            </label>
+            <select id="CampingType" name="CampingType" data-theme="a" data-mini="true" class="required" />
+               <option value="family">
+                    Family
+                </option>
+                <option value="backpacking">
+                    Backpacking
+                </option>
+                <option value="survivalist">
+                    Survivalist Camping
+                </option>
+            </select>
+        </div>
+        
+        <div data-role="fieldcontain">
+            <label for="Destination">
+                *Destination
+            </label>
+            <input name="Destination" id="Destination" placeholder="Florida" value="" type="text" data-mini="true"/>
+        </div>
+        
+        <div data-role="fieldcontain">
+            <label for="startdate">*Camping Start Date</label>
+            <input type="date" min="1904-03-17" max="4000-05-17" id="startdate" class="required date" name="startdate" required aria-required="true" placeholder="1911-03-17"></input>          
+        </div>
+        
+        <div data-role="fieldcontain">
+            <label for="enddate">*Camping End Date</label>
+            <input type="date" min="1904-03-17" max="4000-05-17" id="enddate" class="required date" name="enddate" required aria-required="true" placeholder="1911-03-17"></input>          
+        
+        </div>
+        
+        <div data-role="fieldcontain">
+         <label for="notes">
+                Notes
+            </label>
+            <textarea name="notes" id="notes" placeholder="special notes"></textarea>
+        </div>
+        
+        <div data-role="navbar">
+           <ul>
+               <li><input type="submit" id="submit" data-theme="a" value="SUBMIT"/></li>
+               <li><input type="reset" id="reset" value="RESET" data-theme="a" data-icon="delete" data-mini="true"/></li>       
+           </ul>
+        </div>
+         
+        <div data-theme="" data-role="footer" data-position="fixed">
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li>
+                    <a href="#page1" data-transition="fade" data-theme="a" data-icon="home">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#pageN" data-transition="fade" data-theme="a" data-icon="info">
+                        Gear Checklist
+                    </a>
+                </li>
+                <li>
+                    <a href="#pageView" data-transition="fade" data-theme="a" data-icon="info">
+                        View
+                    </a>
+                </li>
+            </ul>
+        </div>
+        </div>
+         
+         <a href="#TravelTypeErrors" id="tterrorsLink" data-rel="dialog" data-transition="pop"></a>        
+      </form>
+   </div>
+</div>
+
+<!form above here-->
+<div data-role="dialog" id="TravelTypeErrors" data-theme="a" data-add-back-btn="true">
+    <div data-theme="a" data-role="header" data-position="fixed">
+        <h3>
+         
+        </h3>
+    </div>
+    <div data-role="content">
+        <ul>
+	    <li> </li>
+        </ul>
+    </div>
+</div>
+
+<!view page>
+<section data-role="page" id="pageView" data-theme="a" data-add-back-btn="true">
+    <div data-theme="a" data-role="header">
+        <h3>
+           No items found
+        </h3>
+    </div>
+    <div data-role="content" data-theme="a">    
+    <p>This view page is under construction</p>
+    <p>Please try back later</p>
+    <div data-theme="a" data-role="footer" data-position="fixed">
+        <h3>
+            
+        </h3>
+    </div>
+    </div>
+</section> 
+
+<!info page>
+  <section data-role="page" id="pageInfo" data-theme="a" data-add-back-btn="true">
+    <div data-theme="a" data-role="header">
+        <h3>
+           No items found
+        </h3>
+    </div>
+    <div data-role="content" data-theme="a">    
+    <p>This Info page is under construction</p>
+    <p>Please try back later</p>
+    <div data-theme="a" data-role="footer" data-position="fixed">
+        <h3>
+            
+        </h3>
+    </div>
+    </div>
+</section>          
+           
+           
+           
+           
+           
+               
+             
+            
+         
+
+    
+
+
+
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script src="js/libs/jquery.validate.min.js" type="text/javascript"></script>
+<script src="js/json.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
+</body>
+</html>
