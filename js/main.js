@@ -3,6 +3,52 @@
 //ASD 1309 Project
 $('#page1').on('pageinit', function() {
 //code needed for home page goes here
+//GETS data and parses it
+$("#json").on()"click", function(){
+	$.ajax({
+		url        : "data.json",
+		type       : "GET",
+		dataType  : "json",
+		success   : function(data, status) {
+			console.log(data, status);
+	    },
+	    error     : function(error, parseerror){
+		    console.log(error, parseerror);
+	    }
+	});
+}
+
+$("#xml").on()"click", function(){
+	$.ajax({
+		url        : "data.xml",
+		type       : "GET",
+		dataType  : "xml",
+		success   : function(data, status) {
+			console.log(data, status);
+	    },
+	    error     : function(error, parseerror){
+		    console.log(error, parseerror);
+	    }
+	});
+}
+
+$("#yaml").on()"click", function(){
+	$.ajax({
+		url        : "data.yaml",
+		type       : "GET",
+		dataType  : "yaml",
+		success   : function(data, status) {
+			console.log(data, status);
+	    },
+	    error     : function(error, parseerror){
+		    console.log(error, parseerror);
+	    }
+	});
+}
+
+
+
+
 console.log("Page one loaded."); 
  });
 		

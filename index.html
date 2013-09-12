@@ -34,23 +34,43 @@
             <div class="content" data-role="content">
                <a href="#home">                   
             <div style="width: 287px; height: 192px; position: relative; border: 0px solid #000000;">
-               <img src="images/camping1.png" alt="Untitled-1.jpg" width="288" height="130" alt="image" style="position: relative; top: 50%; left: 50%; margin-left: -144px; margin-top: -66px">
+               <img src="images/camping2.png" alt="Untitled-1.jpg" width="287" height="192" alt="image" style="position: relative; top: 36%; left: 50%; margin-left: -144px; margin-top: -69px">
             </div>
                
-               <a href="#addItem" data-role="button" >Add Camping Trip</a>          
-       
+               <a href="#addItem" data-role="button" data-transition="slidefade">Add Camping Trip</a>          
+       <ul data-role="listview" data-divider-theme="a" data-inset="true" >
+            <li data-role="list-divider" role="heading">
+                Data Buttons
+            </li>
+            <li data-theme="">
+                <a href="#json" data-transition="slide">
+                    Json
+                </a>
+            </li>
+            <!data for page goes here>
+            <li data-theme="">
+                <a href="#xml" data-transition="slide">
+                    XML
+                </a>
+            </li>
+             <!data for page goes here>            
+           <li data-theme="">
+                <a href="#yaml"  data-transition="slide">
+                    YAML
+                </a>
+            </li>
        <div data-theme="" data-role="footer" data-position="fixed"> 
         <div data-role="navbar" data-iconpos="top">
             
             <ul>
                 <li>
-                    <a href="#pageInfo" data-transition="fade" data-theme="a" data-icon="info">
+                    <a href="#pageInfo" data-transition="slidefade" data-theme="a" data-icon="info">
                         Info
                     </a>
                 </li>
                 
                 <li>
-                    <a href="#pageN" data-transition="fade" data-theme="a" data-icon="check">
+                    <a href="#pageN" data-transition="flip" data-theme="a" data-icon="check">
                         Gear Checklist
                     </a>
                 </li>
