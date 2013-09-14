@@ -4,9 +4,10 @@
 $('#page1').on('pageinit', function() {
 //code needed for home page goes here
 //GETS data and parses it
-$("#json").on()"click", function(){
+
+$("#json").on("click", function(){
 	$.ajax({
-		url        : "data.json",
+		url        : "xhr/data.json",
 		type       : "GET",
 		dataType  : "json",
 		success   : function(data, status) {
@@ -16,11 +17,11 @@ $("#json").on()"click", function(){
 		    console.log(error, parseerror);
 	    }
 	});
-}
+});
 
-$("#xml").on()"click", function(){
+$("#xml").on("click", function(){
 	$.ajax({
-		url        : "data.xml",
+		url        : "xhr/data.xml",
 		type       : "GET",
 		dataType  : "xml",
 		success   : function(data, status) {
@@ -30,11 +31,11 @@ $("#xml").on()"click", function(){
 		    console.log(error, parseerror);
 	    }
 	});
-}
+});
 
-$("#yaml").on()"click", function(){
+$("#yaml").on("click", function(){
 	$.ajax({
-		url        : "data.yaml",
+		url        : "xhr/data.yaml",
 		type       : "GET",
 		dataType  : "yaml",
 		success   : function(data, status) {
@@ -44,7 +45,7 @@ $("#yaml").on()"click", function(){
 		    console.log(error, parseerror);
 	    }
 	});
-}
+});
 
 
 
@@ -54,25 +55,25 @@ console.log("Page one loaded.");
 		
 $('#addItem').on('pageinit', function(){
 console.log("Form loaded.");
+
+
 var myForm = $('#campingForm');
 		    tterrorsLink	= $ ("#tterrorsLink");	    
-		    
-		myForm.validate({
+		    myForm.validate({
 			invalidHandler: function(form, validator) {
-			     tterrorsLink.click();
+			tterrorsLink.click();
 			     //var html= ' ';
 			     for(var key in validator.submitted){
 			      var label = $(' label[for^=" ' + key +' "]'); 
 			       //var legend = label.closest('fieldset').find('.label');
 			       //var fieldName = legend.length ? legend.text() : label.text(); 
 			        //html += '<li>'+ fieldName +'</li>';  
-			     
 			     };
 			    //$("#TravelTypeErrors ul").html(html);
 			},
 			submitHandler: function() {
 		var data = myForm.serializeArray();
-			storeData(data);
+			storeData(data , key);
 					}
 	});
 		//any other code needed for addItem page goes here
@@ -85,12 +86,10 @@ var autofillData = function (){
 	 
 };
 
-var storeData = function(data, key){
-	
-
-
- 
-	    //if there is no key, this means this is a new item and needs a new key
+     
+                 	  
+ function storeData (data, key){
+//if there is no key, this means this is a new item and needs a new key
 	      if (!key){		   
 	        var id           = Math.floor(Math.random()*10000001);
 	    
@@ -101,7 +100,7 @@ var storeData = function(data, key){
    
    
     var item			  = {}; 
-	        item.TravelType     =["TravelType:", $("#TravelType").val()];         
+	        item.Category     =["Category:", $("#Category").val()];         
 	        item.Destination     =["Destination:", $("#Destination").val()];
 	        item.startdate        =["startdate:", $("#startdate").val()];	        
 	        item.enddate         =["enddate:" , $("#enddate").val()];	        
@@ -109,48 +108,47 @@ var storeData = function(data, key){
  	   	//save data into local storage, use stringify to convert object to a string
  	   	localStorage.setItem(id, JSON.stringify(item) );
 	   alert("Travel plan complete!");
- 	   	
+ 	  
 	  
-} 
- 	var	deleteItem = function (){
-	};		
- //get local storage
-	
-
-var clearLocal = function(){
-   function clearLocal(){
-	    if (localStorage.length === 0){
-		    alert("No Data To Clear.");
-	    } else {
-	        localStorage.clear();
-	        alert("All plans Deleted.");
-	        window.location.reload();
-	        return false;
-	   }
- }
 };
- 
- function showData(data,key){
-	displayData.addEventListener("click", getData);
-	};
-	  
- 	  
- 	  
- 	  
- 	  
- 	  
- 	   
+
+//Display Local storage 
+ $("#pageView").on("pageinit", function() {
+	 var getData = function(){
+		 if(localStorage.length === 0 );
+	alert(" There are no stored plans.");
+		 }
+});
+	     for(var i=0; i<localStorage.length; i++){
+		 var key = localStorage.getItem(key);
+		     var obj = JSON.parse(value);
+		     
+		     for ( var n in obj ){
+			 var optSubText = obj[n][0] + " " + obj[n][1];
+			         $("#itemList").append(optSubText + "</br>");
+		     }
+	    $("#itemList").append(key  + " " +  "</br>");
+	    $("#itemList").append('<a href="#" id="editLink">Edit</a> | <a href="#" id="deleteLink">Delete</a>');
+	     
+ };	
+   //edit
+   $("#editLink").on("click", function() {
+	   validateInfo(key);
+   }); 	
+ 	
+ 	//delete function
+ 	$("#deleteLink").on("click", function() {
+	 	var question = confirm("Do you want to delete this plan?");
+	 	if(question){
+		 	localStorage.removeItem(key);
+		 	alert("Plan has been deleted");
+	} else {
+	    alert("Plan was not deleted");
+	          
+	     
+    }
+});
 
 
 
-			      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
-			      
+                                                                                                                                                                                                                           

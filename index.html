@@ -28,7 +28,7 @@
 <body>
 <!-- Home -->
     
-    <section id="page1" data-role="page" data-theme="a">
+    <section id="page1" data-role="page" data-theme="b">
         <header data-role="header" data-position="fixed"><h1>Camp Planner</h1></header>
             
             <div class="content" data-role="content">
@@ -83,7 +83,7 @@
         </div>
          </div>
         
-        </section>
+    </section>
 <!--form-->  
 <div data-role="page" id="addItem" data-theme="a" data-position="fixed">
     <div data-theme="a" data-role="header" >
@@ -95,7 +95,7 @@
        
         <div data-role="fieldcontain">
         
-            <label for="TravelType">
+            <label for="Category">
                 *Camping Category
             </label>
             <select id="CampingType" name="CampingType" data-theme="a" data-mini="true" class="required" />
@@ -138,11 +138,13 @@
         
         <div data-role="navbar">
            <ul>
-               <li><input type="submit" id="submit" data-theme="a" value="SUBMIT"/></li>
+               <li><input type="submit" id="submit" data-theme="a" value="SUBMIT" data-mini="true"/></li>
                <li><input type="reset" id="reset" value="RESET" data-theme="a" data-icon="delete" data-mini="true"/></li>       
            </ul>
         </div>
-         
+         <div class="display">
+         <ul></ul>
+         </div>
         <div data-theme="" data-role="footer" data-position="fixed">
         <div data-role="navbar" data-iconpos="top">
             <ul>
@@ -173,36 +175,79 @@
 <!form above here-->
 <div data-role="dialog" id="TravelTypeErrors" data-theme="a" data-add-back-btn="true">
     <div data-theme="a" data-role="header" data-position="fixed">
-        <h3>
-         
-        </h3>
+        <strong>
+         Missing Fields
+        </strong>
     </div>
     <div data-role="content">
         <ul>
-	    <li> </li>
+	    <li>Please complete the missing fields </li>
         </ul>
     </div>
 </div>
 
-<!view page>
+<!--view page-->
 <section data-role="page" id="pageView" data-theme="a" data-add-back-btn="true">
     <div data-theme="a" data-role="header">
-        <h3>
-           No items found
-        </h3>
+        <h3>Camping Plans</h3>
     </div>
-    <div data-role="content" data-theme="a">    
-    <p>This view page is under construction</p>
-    <p>Please try back later</p>
-    <div data-theme="a" data-role="footer" data-position="fixed">
-        <h3>
-            
-        </h3>
-    </div>
-    </div>
-</section> 
+    <div data-role="content">
+        
+        <p>&nbsp;</p>
+        <div id="itemDetails"></div>        
+        <ul data-role="listview"
+            data-theme="a"
+            data-divider-theme="a"
+            id="itemList">     
+           
+    <li data-role="list-divider"> <span class="ui-li-count"> </span></li>
+            <li><a href="index.html">
 
-<!info page>
+                <h3> </h3>
+
+                <p><strong> </strong> </p>
+               
+               <p>                                            </p>                
+               
+               <p> </p>
+
+                <p class="ui-li-aside"><strong> </strong> </p>
+
+            </a></li>
+            <li><a href="index.html">
+
+                <h3> </h3>
+
+                <p><strong> </strong></p>
+               
+               <p>                                            </p>                
+               
+               <p>    </p>
+
+                <p class="ui-li-aside"><strong>  </strong> </p>
+
+            </a></li>
+            <li><a href="index.html">
+                <h3> </h3>
+
+                <p><strong>  </strong></p>
+
+                <p>  </p>
+                <p>                                            </p>
+                <p class="ui-li-aside"><strong>  </strong>  </p>
+            </a></li>
+        </ul>      
+ <p>&nbsp;</p>
+        <p><a href="#"
+              data-role="button"
+              id="storage">Get local storage.</a></p>
+
+ <div data-theme="a" data-role="footer" data-position="fixed">
+ </div>
+    </div>
+</section>
+ 
+ <!info page>
   <section data-role="page" id="pageInfo" data-theme="a" data-add-back-btn="true">
     <div data-theme="a" data-role="header">
         <h3>
