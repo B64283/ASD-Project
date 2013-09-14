@@ -125,9 +125,9 @@ var autofillData = function (){
 		     
 		     for ( var n in obj ){
 			 var optSubText = obj[n][0] + " " + obj[n][1];
-			         $("#itemList").append(optSubText + "</br>");
+			         $("#itemList").append(optSubText + "</ul>");
 		     }
-	    $("#itemList").append(key  + " " +  "</br>");
+	    $("#itemList").append(key  + " " +  "</ul>");
 	    $("#itemList").append('<a href="#" id="editLink">Edit</a> | <a href="#" id="deleteLink">Delete</a>');
 	     
  };	
