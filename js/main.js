@@ -100,7 +100,7 @@ var autofillData = function (){
    
    
     var item			  = {}; 
-	        item.Category     =["Category:", $("#Category").val()];         
+	        item.Category     =["CampingType:", $("#CampingType").val()];         
 	        item.Destination     =["Destination:", $("#Destination").val()];
 	        item.startdate        =["startdate:", $("#startdate").val()];	        
 	        item.enddate         =["enddate:" , $("#enddate").val()];	        
@@ -116,7 +116,7 @@ var autofillData = function (){
  $("#pageView").on("pageinit", function() {
 	 var getData = function(){
 		 if(localStorage.length === 0 );
-	alert(" There are no stored plans.");
+	alert(" no stored plans.");
 		 }
 });
 	     for(var i=0; i<localStorage.length; i++){
