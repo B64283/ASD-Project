@@ -5,7 +5,7 @@ $('#page1').on('pageinit', function() {
 //code needed for home page goes here
 //GETS data and parses it
 
-$("#json").on("click", function(){
+$("#Jsondata").on("click", function(){
 	$.ajax({
 		url        : "xhr/data.json",
 		type       : "GET",
@@ -19,7 +19,7 @@ $("#json").on("click", function(){
 	});
 });
 
-$("#xml").on("click", function(){
+$("#XMLdata").on("click", function(){
 	$.ajax({
 		url        : "xhr/data.xml",
 		type       : "GET",
@@ -33,7 +33,7 @@ $("#xml").on("click", function(){
 	});
 });
 
-$("#yaml").on("click", function(){
+$("#yamldata").on("click", function(){
 	$.ajax({
 		url        : "xhr/data.yaml",
 		type       : "GET",
@@ -47,12 +47,10 @@ $("#yaml").on("click", function(){
 	});
 });
 
-
-
-
 console.log("Page one loaded."); 
- });
+});
 		
+
 $('#addItem').on('pageinit', function(){
 console.log("Form loaded.");
 
@@ -113,7 +111,7 @@ var autofillData = function (){
 };
 
 //Display Local storage 
- $("#pageView").on("pageinit", function() {
+ $("#pageView").on("click", function() {
 	 var getData = function(){
 		 if(localStorage.length === 0 );
 	alert(" no stored plans.");

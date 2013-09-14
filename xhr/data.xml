@@ -7,8 +7,6 @@
         <End date>09-16-2013</End>        
         <notes>this is going to be great</notes>
     </item>
-</items> 
-<items>
     <item>
         <category>Backpacking</category>
         <destination>Red Rock Canyon</destination>
@@ -16,8 +14,6 @@
         <End date>10-12-2013</End>        
         <notes>Awesome I cant wait!</notes>
     </item>
-</items> 
-<items>
     <item>
         <category>Survivalist</category>
         <destination>Death Valley</destination>
@@ -25,8 +21,6 @@
         <End date>11-21-2013</End>        
         <notes>This is going to kill me!</notes>
     </item>
-</items> 
-<items>
     <item>
         <category>Survivalist</category>
         <destination>Egypt</destination>
@@ -34,41 +28,12 @@
         <End date>12-28-2013</End>        
         <notes>Egypt for christmas?</notes>
     </item>
-</items> 
-<items>
     <item>
         <category>Backpacking</category>
-        <destination></destination>
-        <start date></start>
-        <End date></End>        
-        <notes></notes>
-    </item>
-</items> 
-<items>
-    <item>
-        <category>Family</category>
-        <destination></destination>
-        <start date></start>
-        <End date></End>        
-        <notes></notes>
-    </item>
-</items> 
-<items>
-    <item>
-        <category>Family</category>
-        <destination></destination>
-        <start date></start>
-        <End date></End>        
-        <notes></notes>
-    </item>
-</items> 
-<items>
-    <item>
-        <category>Backpacking</category>
-        <destination></destination>
-        <start date></start>
-        <End date></End>        
-        <notes></notes>
+        <destination>Arizona</destination>
+        <start date>12-25-2014</start>
+        <End date>12-27-2014</End>        
+        <notes>I think it will be cold</notes>
     </item>
 </items> 
 
