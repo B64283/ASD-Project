@@ -5,35 +5,60 @@ $('#page1').on('pageinit', function() {
 //code needed for home page goes here
 //GETS data and parses it
 
-$("#Jsondata").on("click", function(){
+//ajax grabing json data
+$('#Jsondata').on('click', function(){ 
+	$('#itemDetails').empty();
+	$.mobile.changePage('#pageView')
 	$.ajax({
 		url        : "xhr/data.json",
 		type       : "GET",
 		dataType  : "json",
-		success   : function(data, status) {
-			console.log(data, status);
-	    },
-	    error     : function(error, parseerror){
-		    console.log(error, parseerror);
-	    }
+		success   : function(jsondata) {
+			for (var i=0, j=jsondata.item.length; i<j; i++) {
+			    var trip = jsondata.item[i];	    
+                $(' '+
+						'<div class="listing">' +
+				          '<h3>' + 'Category: ' + trip.Category +'</h3>' + '<p>' + 'Destination: ' + trip.Destination +'</p>' +
+				          '<p>' + 'startdate: ' + trip.startdate +'</p>' +
+				          '<p>' + 'enddate: ' + trip.enddate +'</p>' +
+				          '<p>' + 'notes: ' + trip.notes  +'</p>' +				         
+				          '<hr />' +
+				        '</div>'
+				    ).appendTo('#itemDetails');
+				}
+			}
+		});
 	});
-});
 
-$("#XMLdata").on("click", function(){
+$('#XMLdata').on('click', function(){
+	$('#itemDetails').empty();
+	$.mobile.changePage('#pageView')
 	$.ajax({
 		url        : "xhr/data.xml",
 		type       : "GET",
 		dataType  : "xml",
-		success   : function(data, status) {
-			console.log(data, status);
-	    },
-	    error     : function(error, parseerror){
-		    console.log(error, parseerror);
-	    }
-	});
-});
+		success   : function(xml) {
+		$(xml).find('item').each(function() {
+					var category = $(this).find('category').text();
+					var destination = $(this).find('destination').text();
+					var startdate = $(this).find('startdate').text();
+					var Enddate = $(this).find('Enddate').text();
+					var notes = $(this).find('notes').text();
+					$(''+
+					'<div class="listing">' +
+				          '<h3>' + 'category: ' + category +'</h3>' + '<p>' + 'destination: ' + destination +'</p>' +
+				          '<p>' + 'startdate: ' + startdate +'</p>' + '<p>' + 'Enddate: ' + Enddate +'</p>' +
+				          '<p>' + 'notes: ' + notes  +'</p>' +				         
+				          '<hr />' +
+						'</div>'
+						).appendTo('#itemDetails');
+				});
+			}
 
-$("#yamldata").on("click", function(){
+		});
+	});
+	
+	$("#yamldata").on("click", function(){
 	$.ajax({
 		url        : "xhr/data.yaml",
 		type       : "GET",
@@ -47,8 +72,10 @@ $("#yamldata").on("click", function(){
 	});
 });
 
-console.log("Page one loaded."); 
+//console.log("Page one loaded."); 
 });
+
+
 		
 
 $('#addItem').on('pageinit', function(){
@@ -69,7 +96,7 @@ var myForm = $('#campingForm');
 			     };
 			    //$("#TravelTypeErrors ul").html(html);
 			},
-			submitHandler: function() {
+			submitHandler: function(form) {
 		var data = myForm.serializeArray();
 			storeData(data , key);
 					}
@@ -111,7 +138,7 @@ var autofillData = function (){
 };
 
 //Display Local storage 
- $("#pageView").on("click", function() {
+ $("#storage").on("click", function() {
 	 var getData = function(){
 		 if(localStorage.length === 0 );
 	alert(" no stored plans.");

@@ -1,8 +1,8 @@
 {
-    "items":
+    "item": 
     [
         {
-            "category"   :["CampingType:", "Backpacking"],
+            "Category"   :["CampingType:", "backpacking"],
             "Destination":["Destination:", "Red Rock Canyon"],
             "startdate"   :["startdate:", "12-12-2013"],
             "enddate"   :["enddate:", "12-15-2013"],
@@ -10,7 +10,7 @@
            
         },
         {
-            "category"   :["CampingType:", "Family"],
+            "Category"   :["CampingType:", "family"],
             "Destination":["Destination:", "Yosemite"],
             "startdate"   :["startdate:", "12-27-2013"],
             "enddate"   :["enddate:", "12-30-2013"],
@@ -19,7 +19,7 @@
 
         },
         {
-            "category"   :["CampingType:", "survivalist camping"],
+            "Category"   :["CampingType:", "survivalist camping"],
             "Destination":["Destination:", "Death Valley"],
             "startdate"   :["startdate:", "12-12-2013"],
             "enddate"   :["enddate:", "12-15-2013"],
@@ -27,7 +27,7 @@
            
 
         },
-        {"category"   :["CampingType:", "Survivalist"],
+        {    "Category"   :["CampingType:", "survivalist"],
             "Destination":["Destination:", "Brazil"],
             "startdate"   :["startdate:", "12-12-2013"],
             "enddate"   :["enddate:", "12-15-2013"],
@@ -35,7 +35,7 @@
            
         },
         {
-            "category"   :["CampingType:", "Backpacking"],
+            "Category"   :["CampingType:", "backpacking"],
             "Destination":["Destination:", "Red Rock Canyon"],
             "startdate"   :["startdate:", "12-12-2013"],
             "enddate"   :["enddate:", "12-15-2013"],

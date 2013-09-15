@@ -43,19 +43,19 @@
                 Data Buttons
             </li>
             <li data-theme="">
-                <a href="#json" data-mini="true" data-transition="slide">
+                <a id="Jsondata" href="#pageView" data-transition="slide">
                     Json
                 </a>
             </li>
             <!data for page goes here>
             <li data-theme="">
-                <a href="#xml" data-transition="slide">
+                <a id="XMLdata" href="#pageView" data-transition="slide">
                     XML
                 </a>
             </li>
              <!data for page goes here>            
            <li data-theme="">
-                <a href="#yaml"  data-transition="slide">
+                <a id="yamldata" href="#pageView"  data-transition="slide">
                     YAML
                 </a>
             </li>
@@ -187,65 +187,24 @@
 </div>
 
 <!--view page-->
-<section data-role="page" id="pageView" data-theme="a" data-add-back-btn="true">
-    <div data-theme="a" data-role="header">
+<div data-role="page" id="pageView" data-theme="a" data-add-back-btn="true">
+    <div  data-role="header" data-theme="a" >
         <h3>Camping Plans</h3>
-    </div>
+    </div><!--end header-->    
     <div data-role="content">
         
-        <p>&nbsp;</p>
-        <div id="itemDetails"></div>        
-        <ul data-role="listview"
-            data-theme="a"
-            data-divider-theme="a"
-            id="itemList">     
-           
-    <li data-role="list-divider"> <span class="ui-li-count"> </span></li>
-            <li><a href="index.html">
-
-                <h3> </h3>
-
-                <p><strong> </strong> </p>
-               
-               <p>                                            </p>                
-               
-               <p> </p>
-
-                <p class="ui-li-aside"><strong> </strong> </p>
-
-            </a></li>
-            <li><a href="index.html">
-
-                <h3> </h3>
-
-                <p><strong> </strong></p>
-               
-               <p>                                            </p>                
-               
-               <p>    </p>
-
-                <p class="ui-li-aside"><strong>  </strong> </p>
-
-            </a></li>
-            <li><a href="index.html">
-                <h3> </h3>
-
-                <p><strong>  </strong></p>
-
-                <p>  </p>
-                <p>                                            </p>
-                <p class="ui-li-aside"><strong>  </strong>  </p>
-            </a></li>
-        </ul>      
- <p>&nbsp;</p>
-        <p><a href=""
-              data-role="button"
-              id="">Get local storage.</a></p>
-
- <div data-theme="a" data-role="footer" data-position="fixed">
- </div>
+        <ul data-role="listview" data-theme="a"  data-collapsed="false" data-divider-theme="a" id="dataList" data-inset="true"></ul>  <!-- Our listview has a id of "itemList" -->        
+            
+            <div id="itemDetails">
+	        
+            </div>        
     </div>
-</section>
+             <p><a href="#pageView" data-role="button" id="storage">Get local storage.</a></p>
+
+            <div data-theme="a" data-role="footer" data-position="fixed">
+    </div>
+    </div>
+</div>
  
  <!info page>
   <section data-role="page" id="pageInfo" data-theme="a" data-add-back-btn="true">
