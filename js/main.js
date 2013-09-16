@@ -75,6 +75,61 @@ $('#XMLdata').on('click', function(){
 //console.log("Page one loaded."); 
 });
 
+//Display Local storage 
+
+$('#storage').on('click', function(){
+$.mobile.changePage('#pageView');
+		//Empty the div to 
+		$('#itemDetails').empty();
+		//for loop to continue through localStorage for all items.
+		for( var i=0, ls = localStorage.length; i < ls; i++) {
+		var key = localStorage.key(i);
+		var value = localStorage.getItem(key);
+
+		//var objectString = JSON.parse(value);
+		var objSt = $.parseJSON(value);
+		//console.log(objectString);
+
+			$(''+
+				'<div class="listing">' +
+				 '<h3>' + 'Category: ' + objSt.Category +'</h3>' + '<p>' + 'Destination: ' + objSt.Destination +'</p>' +
+				          '<p>' + 'startdate: ' + objSt.startdate +'</p>' +
+				          '<p>' + 'enddate: ' + objSt.enddate +'</p>' +
+				          '<p>' + 'notes: ' + objSt.notes  +'</p>' +	
+					'<div class="ui-block-b">' + '<input type="button" class="delete" value="Delete" data-key="' + key + '">' + '</div>'+ 
+                    '<div class="ui-block-b">' + '<input type="button" class="edit" value="Edit" data-key="' + key + '">' + '</div>'+
+					'<br />'+
+					'<hr />' +
+				'</div>'
+			).appendTo('#itemDetails'); 
+
+
+			//delete function
+			$('.delete').on('click', function(){
+				  	    
+				   
+				   var dkey = $(this).data('key');
+
+					
+					localStorage.removeItem(dkey);
+
+			});
+
+			//edit function
+			$('.edit').on('click', function(key, value){
+				$.mobile.changePage('#addItem');
+
+				var edtkey = $(this).attr('data-key');
+				//console.log(ekey);
+				$('#CampingType').val(objSt.Category[0]);
+				$('#Destination').val(objSt.Destination[0]);
+            	$('#startdate').val(objSt.startdate[0]);
+            	$('#enddate').val(objSt.enddate[0]);
+				$('#notes').val(objSt.notes[0]);				
+				$('#key').val(edtkey);
+			});
+		}
+	});
 
 		
 
@@ -132,47 +187,18 @@ var autofillData = function (){
 	        item.notes            =["notes:", $("#notes").val()];
  	   	//save data into local storage, use stringify to convert object to a string
  	   	localStorage.setItem(id, JSON.stringify(item) );
-	   alert("Travel plan complete!");
+	   alert("Camping plan complete!");
  	  
 	  
 };
 
-//Display Local storage 
- $("#storage").on("click", function() {
-	 var getData = function(){
-		 if(localStorage.length === 0 );
-	alert(" no stored plans.");
-		 }
-});
-	     for(var i=0; i<localStorage.length; i++){
-		 var key = localStorage.getItem(key);
-		     var obj = JSON.parse(value);
-		     
-		     for ( var n in obj ){
-			 var optSubText = obj[n][0] + " " + obj[n][1];
-			         $("#itemList").append(optSubText + "</ul>");
-		     }
-	    $("#itemList").append(key  + " " +  "</ul>");
-	    $("#itemList").append('<a href="#" id="editLink">Edit</a> | <a href="#" id="deleteLink">Delete</a>');
-	     
- };	
-   //edit
-   $("#editLink").on("click", function() {
-	   validateInfo(key);
-   }); 	
- 	
- 	//delete function
- 	$("#deleteLink").on("click", function() {
-	 	var question = confirm("Do you want to delete this plan?");
-	 	if(question){
-		 	localStorage.removeItem(key);
-		 	alert("Plan has been deleted");
-	} else {
-	    alert("Plan was not deleted");
-	          
-	     
-    }
-});
+var submit = $('#submit');
+	submit.on('click', storeData); 
+ 
+
+
+$('#pageView').on('pageinit', function(){
+});	
 
 
 
