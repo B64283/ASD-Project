@@ -81,21 +81,21 @@ $('#storage').on('click', function(){
 $.mobile.changePage('#pageView');
 		//Empty the div to 
 		$('#itemDetails').empty();
-		//for loop to continue through localStorage for all items.
+		//for loop goes through localStorage for all items.
 		for( var i=0, ls = localStorage.length; i < ls; i++) {
 		var key = localStorage.key(i);
 		var value = localStorage.getItem(key);
 
-		//var objectString = JSON.parse(value);
-		var objSt = $.parseJSON(value);
+		var objectString = JSON.parse(value);
+		//var objectString = $.parseJSON(value);
 		//console.log(objectString);
 
 			$(''+
 				'<div class="listing">' +
-				 '<h3>' + 'Category: ' + objSt.Category +'</h3>' + '<p>' + 'Destination: ' + objSt.Destination +'</p>' +
-				          '<p>' + 'startdate: ' + objSt.startdate +'</p>' +
-				          '<p>' + 'enddate: ' + objSt.enddate +'</p>' +
-				          '<p>' + 'notes: ' + objSt.notes  +'</p>' +	
+				 '<h3>' + 'Category: ' + objectString.Category +'</h3>' + '<p>' + 'Destination: ' + objectString.Destination +'</p>' +
+				          '<p>' + 'startdate: ' + objectString.startdate +'</p>' +
+				          '<p>' + 'enddate: ' + objectString.enddate +'</p>' +
+				          '<p>' + 'notes: ' + objectString.notes  +'</p>' +	
 					'<div class="ui-block-b">' + '<input type="button" class="delete" value="Delete" data-key="' + key + '">' + '</div>'+ 
                     '<div class="ui-block-b">' + '<input type="button" class="edit" value="Edit" data-key="' + key + '">' + '</div>'+
 					'<br />'+
@@ -120,12 +120,12 @@ $.mobile.changePage('#pageView');
 				$.mobile.changePage('#addItem');
 
 				var edtkey = $(this).attr('data-key');
-				//console.log(ekey);
-				$('#CampingType').val(objSt.Category[0]);
-				$('#Destination').val(objSt.Destination[0]);
-            	$('#startdate').val(objSt.startdate[0]);
-            	$('#enddate').val(objSt.enddate[0]);
-				$('#notes').val(objSt.notes[0]);				
+				console.log(edtkey);
+				$('#CampingType').val(objectString.Category[0]);
+				$('#Destination').val(objectString.Destination[0]);
+            	$('#startdate').val(objectString.startdate[0]);
+            	$('#enddate').val(objectString.enddate[0]);
+				$('#notes').val(objectString.notes[0]);				
 				$('#key').val(edtkey);
 			});
 		}
@@ -153,7 +153,7 @@ var myForm = $('#campingForm');
 			},
 			submitHandler: function(form) {
 		var data = myForm.serializeArray();
-			storeData(data , key);
+			storeData(data);
 					}
 	});
 		//any other code needed for addItem page goes here
@@ -168,17 +168,13 @@ var autofillData = function (){
 
      
                  	  
- function storeData (data, key){
-//if there is no key, this means this is a new item and needs a new key
-	      if (!key){		   
-	        var id           = Math.floor(Math.random()*10000001);
-	    
-	     }else{	    
-		 
-		  id = key;
-        }
-   
-   
+ var storeData = function (key, value){
+	if($('#key').val() == '') {
+		var randomID = Math.floor(Math.random()*10000001);
+        console.log(randomID);
+    } else {
+    	var randomID = $('#key').val();
+    };   
     var item			  = {}; 
 	        item.Category     =["CampingType:", $("#CampingType").val()];         
 	        item.Destination     =["Destination:", $("#Destination").val()];
@@ -186,15 +182,16 @@ var autofillData = function (){
 	        item.enddate         =["enddate:" , $("#enddate").val()];	        
 	        item.notes            =["notes:", $("#notes").val()];
  	   	//save data into local storage, use stringify to convert object to a string
- 	   	localStorage.setItem(id, JSON.stringify(item) );
-	   alert("Camping plan complete!");
- 	  
-	  
-};
+ 	   	localStorage.setItem(randomID, JSON.stringify(item) );
+	  var randomID = key;	 	   
+	  alert("Camping plan complete!");
+ 	 
+ 	 window.location.reload(); 	   
+
 
 var submit = $('#submit');
 	submit.on('click', storeData); 
- 
+ };
 
 
 $('#pageView').on('pageinit', function(){
