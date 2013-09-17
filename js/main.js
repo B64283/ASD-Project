@@ -119,7 +119,7 @@ $.mobile.changePage('#pageView');
 			$('.edit').on('click', function(key, value){
 				$.mobile.changePage('#addItem');
 
-				var edtkey = $(this).attr('data-key');
+				var edtkey = $(this).data('key');
 				console.log(edtkey);
 				$('#CampingType').val(objectString.Category[0]);
 				$('#Destination').val(objectString.Destination[0]);
