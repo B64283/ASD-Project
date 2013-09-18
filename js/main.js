@@ -86,16 +86,17 @@ $.mobile.changePage('#pageView');
 		var key = localStorage.key(i);
 		var value = localStorage.getItem(key);
 
-		var objectString = JSON.parse(value);
+		var item = JSON.parse(value);
 		//var objectString = $.parseJSON(value);
 		//console.log(objectString);
 
 			$(''+
 				'<div class="listing">' +
-				 '<h3>' + 'Category: ' + objectString.Category +'</h3>' + '<p>' + 'Destination: ' + objectString.Destination +'</p>' +
-				          '<p>' + 'startdate: ' + objectString.startdate +'</p>' +
-				          '<p>' + 'enddate: ' + objectString.enddate +'</p>' +
-				          '<p>' + 'notes: ' + objectString.notes  +'</p>' +	
+				        '<h3>' + 'Category: ' + item.Category[1] +'</h3>' + 
+				       '<p>' + 'Destination: ' + item.Destination[1] +'</p>' +
+				          '<p>' + 'startdate: ' + item.startdate[1] +'</p>' +
+				           '<p>' + 'enddate: ' + item.enddate[1] +'</p>' +
+				              '<p>' + 'notes: ' + item.notes[1]  +'</p>' +	
 					'<div class="ui-block-b">' + '<input type="button" class="delete" value="Delete" data-key="' + key + '">' + '</div>'+ 
                     '<div class="ui-block-b">' + '<input type="button" class="edit" value="Edit" data-key="' + key + '">' + '</div>'+
 					'<br />'+
@@ -103,29 +104,32 @@ $.mobile.changePage('#pageView');
 				'</div>'
 			).appendTo('#itemDetails'); 
 
-
 			//delete function
 			$('.delete').on('click', function(){
-				  	    
-				   
-				   var dkey = $(this).data('key');
-
-					
-					localStorage.removeItem(dkey);
-
-			});
+				 var dkey = $(this).data('key');
+				 var ask = confirm("Are you sure you want to delete this plan?");
+				     if (ask){	    
+				    localStorage.removeItem(dkey);
+                    alert ("Plan has been deleted");
+                    
+                    window.location.reload();			
+                   } else {
+                   alert ("Plan was not deleted");
+             }
+});
 
 			//edit function
 			$('.edit').on('click', function(key, value){
 				$.mobile.changePage('#addItem');
 
 				var edtkey = $(this).data('key');
-				console.log(edtkey);
-				$('#CampingType').val(objectString.Category[0]);
-				$('#Destination').val(objectString.Destination[0]);
-            	$('#startdate').val(objectString.startdate[0]);
-            	$('#enddate').val(objectString.enddate[0]);
-				$('#notes').val(objectString.notes[0]);				
+				var value = localStorage.getItem(this.key);				
+				//console.log(edtkey);
+	            $('#CampingType').val(item.Category[1]);
+				$('#Destination').val(item.Destination[1]);
+            	$('#startdate').val(item.startdate[1]);
+            	$('#enddate').val(item.enddate[1]);
+				$('#notes').val(item.notes[1])	;			
 				$('#key').val(edtkey);
 			});
 		}
@@ -171,12 +175,12 @@ var autofillData = function (){
  var storeData = function (key, value){
 	if($('#key').val() == '') {
 		var randomID = Math.floor(Math.random()*10000001);
-        console.log(randomID);
+        //console.log(randomID);
     } else {
     	var randomID = $('#key').val();
     };   
     var item			  = {}; 
-	        item.Category     =["CampingType:", $("#CampingType").val()];         
+	        item.Category       =["CampingType:", $("#CampingType").val()];         
 	        item.Destination     =["Destination:", $("#Destination").val()];
 	        item.startdate        =["startdate:", $("#startdate").val()];	        
 	        item.enddate         =["enddate:" , $("#enddate").val()];	        
@@ -191,6 +195,7 @@ var autofillData = function (){
 
 var submit = $('#submit');
 	submit.on('click', storeData); 
+	$.mobile.changePage("#page1");
  };
 
 
