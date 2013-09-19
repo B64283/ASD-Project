@@ -86,7 +86,7 @@ $.mobile.changePage('#pageView');
 		var key = localStorage.key(i);
 		var value = localStorage.getItem(key);
 
-		var item = JSON.parse(value);
+		var item = $.parseJSON(value);
 		//var objectString = $.parseJSON(value);
 		//console.log(objectString);
 
@@ -107,31 +107,36 @@ $.mobile.changePage('#pageView');
            
            //delete function
 			$('.delete').on('click', function(){
+				
 				 var dkey = $(this).data('key');				
 				  var ask = confirm("Are you sure you want to delete the plan?");
 	    if (ask){
 	        localStorage.removeItem(dkey);
 	        alert("Plan was deleted.");
-	        window.location.reload();
-    }else{
+		  $.mobile.changePage('#addItem'); 		  
+		   window.location.reload();     
+      
+        }else{
 	   alert("Vacation was not deleted.") 
     }
  
 });
 
+
+
 			//edit function
 			$('.edit').on('click', function(key, value){
 				$.mobile.changePage('#addItem');
 
-				var edtkey = $(this).data('key');
+				var ekey = $(this).data('key');
 				var val = localStorage.getItem(this.key);				
-				//console.log(edtkey);
+				console.log(ekey);
 	            $('#CampingType').val(item.Category[1]);
 				$('#Destination').val(item.Destination[1]);
             	$('#startdate').val(item.startdate[1]);
             	$('#enddate').val(item.enddate[1]);
 				$('#notes').val(item.notes[1])	;			
-				$('#key').val(edtkey);
+				//$('#key').val(ekey);
 			});
 		}
 	});
@@ -172,34 +177,33 @@ var autofillData = function (){
 
      
                  	  
- var storeData = function (key){
-	 if (!key){
-		   var id           = Math.floor(Math.random()*10000001);
-	    }else{
-	     // set id to existing key we"re editing so it will save over the data
-	     // the key is the same key that is passed along from the edit submit event handeler.
-	     // then goes to the validate function and the passed here, into the stor data function
-		    id= key;
-	    }
-    var item			  = {}; 
+ var storeData = function (key, value){
+	if($('#key').val() == '') {
+		var randomID = Math.floor(Math.random()*10000001);
+        console.log(randomID);
+    } else {
+    	var randomID = $('#key').val();
+    }  
+    
+     var item			  = {}; 
 	        item.Category       =["CampingType:", $("#CampingType").val()];         
 	        item.Destination     =["Destination:", $("#Destination").val()];
 	        item.startdate        =["startdate:", $("#startdate").val()];	        
 	        item.enddate         =["enddate:" , $("#enddate").val()];	        
 	        item.notes            =["notes:", $("#notes").val()];
  	   	//save data into local storage, use stringify to convert object to a string
- 	   	localStorage.setItem(id, JSON.stringify(item) );
-	 // var randomID = key;	 	   
+ 	   	localStorage.setItem(randomID, JSON.stringify(item));
+	  var randomID = key;	 	   
 	  alert("Camping plan complete!");
  	 
  	 window.location.reload(); 	   
 
-
-var submit = $('#submit');
-	submit.on('click', storeData); 
-	$.mobile.changePage("#page1");
+};
+//var submit = $('#submit');
+	//submit.on('click', storeData); 
+	
  //window.location.reload();
- };
+
 
 
 $('#pageView').on('pageinit', function(){
