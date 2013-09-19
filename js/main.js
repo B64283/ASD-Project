@@ -57,7 +57,7 @@ $('#XMLdata').on('click', function(){
 
 		});
 	});
-	
+
 	$("#yamldata").on("click", function(){
 	$.ajax({
 		url        : "xhr/data.yaml",
@@ -92,30 +92,31 @@ $.mobile.changePage('#pageView');
 
 			$(''+
 				'<div class="listing">' +
-				        '<h3>' + 'Category: ' + item.Category[1] +'</h3>' + 
-				       '<p>' + 'Destination: ' + item.Destination[1] +'</p>' +
-				          '<p>' + 'startdate: ' + item.startdate[1] +'</p>' +
-				           '<p>' + 'enddate: ' + item.enddate[1] +'</p>' +
-				              '<p>' + 'notes: ' + item.notes[1]  +'</p>' +	
+				        '<h3>' + 'Category: ' + item.Category +'</h3>' + 
+				       '<p>' + 'Destination: ' + item.Destination +'</p>' +
+				          '<p>' + 'startdate: ' + item.startdate +'</p>' +
+				           '<p>' + 'enddate: ' + item.enddate +'</p>' +
+				              '<p>' + 'notes: ' + item.notes  +'</p>' +	
 					'<div class="ui-block-b">' + '<input type="button" class="delete" value="Delete" data-key="' + key + '">' + '</div>'+ 
                     '<div class="ui-block-b">' + '<input type="button" class="edit" value="Edit" data-key="' + key + '">' + '</div>'+
 					'<br />'+
 					'<hr />' +
 				'</div>'
 			).appendTo('#itemDetails'); 
-
-			//delete function
+		
+           
+           //delete function
 			$('.delete').on('click', function(){
-				 var dkey = $(this).data('key');
-				 var ask = confirm("Are you sure you want to delete this plan?");
-				     if (ask){	    
-				    localStorage.removeItem(dkey);
-                    alert ("Plan has been deleted");
-                    
-                    window.location.reload();			
-                   } else {
-                   alert ("Plan was not deleted");
-             }
+				 var dkey = $(this).data('key');				
+				  var ask = confirm("Are you sure you want to delete the plan?");
+	    if (ask){
+	        localStorage.removeItem(dkey);
+	        alert("Plan was deleted.");
+	        window.location.reload();
+    }else{
+	   alert("Vacation was not deleted.") 
+    }
+ 
 });
 
 			//edit function
@@ -123,7 +124,7 @@ $.mobile.changePage('#pageView');
 				$.mobile.changePage('#addItem');
 
 				var edtkey = $(this).data('key');
-				var value = localStorage.getItem(this.key);				
+				var val = localStorage.getItem(this.key);				
 				//console.log(edtkey);
 	            $('#CampingType').val(item.Category[1]);
 				$('#Destination').val(item.Destination[1]);
@@ -135,7 +136,6 @@ $.mobile.changePage('#pageView');
 		}
 	});
 
-		
 
 $('#addItem').on('pageinit', function(){
 console.log("Form loaded.");
@@ -161,24 +161,26 @@ var myForm = $('#campingForm');
 					}
 	});
 		//any other code needed for addItem page goes here
-	
+
 });
 
 //The functions below can go inside or outside the pageinit function for the page in which it is needed.
 
 var autofillData = function (){
-	 
+
 };
 
      
                  	  
- var storeData = function (key, value){
-	if($('#key').val() == '') {
-		var randomID = Math.floor(Math.random()*10000001);
-        //console.log(randomID);
-    } else {
-    	var randomID = $('#key').val();
-    };   
+ var storeData = function (key){
+	 if (!key){
+		   var id           = Math.floor(Math.random()*10000001);
+	    }else{
+	     // set id to existing key we"re editing so it will save over the data
+	     // the key is the same key that is passed along from the edit submit event handeler.
+	     // then goes to the validate function and the passed here, into the stor data function
+		    id= key;
+	    }
     var item			  = {}; 
 	        item.Category       =["CampingType:", $("#CampingType").val()];         
 	        item.Destination     =["Destination:", $("#Destination").val()];
@@ -186,8 +188,8 @@ var autofillData = function (){
 	        item.enddate         =["enddate:" , $("#enddate").val()];	        
 	        item.notes            =["notes:", $("#notes").val()];
  	   	//save data into local storage, use stringify to convert object to a string
- 	   	localStorage.setItem(randomID, JSON.stringify(item) );
-	  var randomID = key;	 	   
+ 	   	localStorage.setItem(id, JSON.stringify(item) );
+	 // var randomID = key;	 	   
 	  alert("Camping plan complete!");
  	 
  	 window.location.reload(); 	   
@@ -196,6 +198,7 @@ var autofillData = function (){
 var submit = $('#submit');
 	submit.on('click', storeData); 
 	$.mobile.changePage("#page1");
+ //window.location.reload();
  };
 
 
