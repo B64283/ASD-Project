@@ -89,26 +89,23 @@
             ]
         },
         {
-            "Category": [
-                "CampingType:",
-                "backpacking"
-            ],
-            "Destination": [
-                "Destination:",
+           "Destination": [
+                
                 "Red Rock Canyon"
             ],
             "startdate": [
-                "startdate:",
+               
                 "12-12-2013"
             ],
             "enddate": [
-                "enddate:",
+                
                 "12-15-2013"
             ],
             "notes": [
-                "Notes:",
+               
                 "Red Rock Canyon is awesome!"
-            ]
+            ],
+            "Category": ["backpacking"]
         }
     ]
 }

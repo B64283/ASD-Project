@@ -3,36 +3,117 @@
 //ASD 1309 Project
 
 
-$('#page1').on('pageinit', function() {
+$(document).on('pageinit', '#page1', function(){
+   // CouchDB Code
+});
 //code needed for home page goes here
 //GETS data and parses it
 
 //ajax grabing json data
-$('#FamilyBtn').on( 'click',function(){ 
-	$('#itemDetails').empty();
+$('#BackpackingBtn').on( 'click',function(){ 
+	$('#itemDetails').empty();   // emty the itemDetails section
 	$.mobile.changePage('#pageView');
 	$.ajax({
 		url        : "_view/Plans",
 		dataType  : "json",
 		success   : function(data) {
-			$.each(data.rows, function(index, plan){
-			   var Categoryfamily = plan.value;
-			   $('#itemDetails').append(
-			   $('<li>').append(
-			   $('<a>').attr('href', '#')
-			   .text(Categoryfamily)
-			   
-			   
-			   )
-			 );
+			$.each(data.rows	, function(index, plan){
+			   // var Category= plan.value.Category;
+			   // var Destination= plan.value.Destination;			   
+	            //var startdate= plan.value.startdate;
+	           // var enddate= plan.value.enddate;
+	           // var notes= plan.value.notes;
+	           // $('#itemDetails').append(
+	            $(''+
+	               ' <li>'+
+	            '<a href="#">' +
+	            '<h1>' + plan.value.Category + '</h1>' +
+	            '<h2>' + plan.value.Destination + '</h2>' +
+	            '<P>' + plan.value.startdate + '</p>' +
+	            '<p>' + plan.value.enddate + '</p>' +   
+	            '<p>' + plan.value.notes + '</P>' +   
+	            '</a>' +
+	            '<li>'    
+	              ).appendTo("#itemDetails");  
+	            
+	            
+	            
+			 
 	      });
     	$('#itemDetails').listview('refresh');
     	}
 	});	    
 });		  
+	  
+
+$('#FamilyBtn').on( 'click',function(){ 
+	$('#itemDetails').empty();
+	$.mobile.changePage('#pageView');
+	$.ajax({
+		url        : "_view/planB",
+		dataType  : "json",
+		success   : function(data) {
+			$.each(data.rows	, function(index, planB){
+			   // var Category= planB.value.Category;
+			    //var Destination= planB.value.Destination;			   
+	            //$('#itemDetails').append(
+	            $(''+
+	               ' <li>'+
+	            '<a href="#">' +
+	            '<h3>' + planB.value.Category + '</h3>' +
+	            '<p>' + planB.value.Destination + '</P>' +
+	            '<P>' + planB.value.startdate + '</p>' +
+	            '<p>' + planB.value.enddate + '</p>' +   
+	            '<p>' + planB.value.notes + '</P>' +   
+	            '</a>' +
+	            '<li>'    
+	              ).appendTo("#itemDetails");  
+	            
+	            
+	            
+			 
+	      });
+    	$('#itemDetails').listview('refresh');
+    	}
+	});	    
+});		  
+
+$('#SurvivalistBtn').on( 'click',function(){ 
+	$('#itemDetails').empty();
+	$.mobile.changePage('#pageView');
+	$.ajax({
+		url        : "_view/planC",
+		dataType  : "json",
+		success   : function(data) {
+			$.each(data.rows	, function(index, planC){
+			    //var Category= planC.value.Category;
+			    //var Destination= planC.value.Destination;			   
+	             $(''+
+	               ' <li>'+
+	            '<a href="#">' +
+	            '<h3>' + planC.value.Category + '</h3>' +
+	            '<p>' + planC.value.Destination + '</P>' +
+	            '<P>' + planC.value.startdate + '</p>' +
+	            '<p>' + planC.value.enddate + '</p>' +   
+	            '<p>' + planC.value.notes + '</P>' +   
+	            '</a>' +
+	            '<li>'    
+	              ).appendTo("#itemDetails");  
+	            
+	            
+	            
+			 
+	      });
+    	$('#itemDetails').listview('refresh');
+    	}
+	});	    
 });		  
 			  
-			   /*///Display Local storage 
+
+
+
+
+			   ///Display Local storage 
 
 $('#storage').on('click', function(){
 $.mobile.changePage('#pageView');
@@ -161,11 +242,11 @@ var autofillData = function (){
 	
  //window.location.reload();
 
-});
+//});
 
 $('#pageView').on('pageinit', function(){
 
-});	*/
+});	
 
 
 

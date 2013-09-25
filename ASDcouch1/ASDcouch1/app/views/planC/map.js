@@ -1,6 +1,6 @@
 function(doc) {
-  if (doc._id.substr(0, 5)=== "plan:") {
-    emit(doc._id.substr(5),{
+  if (doc._id.substr(0, 6)=== "planC:") {
+    emit(doc._id.substr(6),{
     "Destination": doc.Destination,
     "startdate": doc.startdate,
     "enddate": doc.enddate,
