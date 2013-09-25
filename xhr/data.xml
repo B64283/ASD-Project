@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+    <item>
+        <category>Family</category>
+        <destination>Yosemite</destination>
+        <startdate>09-12-2013</startdate>
+        <Enddate>09-16-2013</Enddate>        
+        <notes>this is going to be great</notes>
+    </item>
+    <item>
+        <category>Backpacking</category>
+        <destination>Red Rock Canyon</destination>
+        <startdate>10-10-2013</startdate>
+        <Enddate>10-12-2013</Enddate>        
+        <notes>Awesome I cant wait!</notes>
+    </item>
+    <item>
+        <category>Survivalist</category>
+        <destination>Death Valley</destination>
+        <startdate>11-01-2013</startdate>
+        <Enddate>11-21-2013</Enddate>        
+        <notes>This is going to kill me!</notes>
+    </item>
+    <item>
+        <category>Survivalist</category>
+        <destination>Egypt</destination>
+        <startdate>12-25-2013</startdate>
+        <Enddate>12-28-2013</Enddate>        
+        <notes>Egypt for christmas?</notes>
+    </item>
+    <item>
+        <category>Backpacking</category>
+        <destination>Arizona</destination>
+        <startdate>12-25-2014</startdate>
+        <Enddate>12-27-2014</Enddate>        
+        <notes>I think it will be cold</notes>
+    </item>
+</items> 
+
+
+
+

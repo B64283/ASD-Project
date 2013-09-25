@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>ASDcouch1</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+		<nature>com.pittypanda.plugins.couch.nature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>app/_attachments/bg_hr.png</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/bg_hr.png</locationURI>
+		</link>
+		<link>
+			<name>app/_attachments/icon_download.png</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/icon_download.png</locationURI>
+		</link>
+		<link>
+			<name>app/_attachments/icons-36-black.png</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/icons-36-black.png</locationURI>
+		</link>
+		<link>
+			<name>app/_attachments/sprite_download.png</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/sprite_download.png</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>

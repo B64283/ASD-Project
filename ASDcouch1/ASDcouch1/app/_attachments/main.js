@@ -1,81 +1,119 @@
 //alert("javaScript works");
 // Matthew Darke
 //ASD 1309 Project
-$('#page1').on('pageinit', function() {
+
+
+$(document).on('pageinit', '#page1', function(){
+   // CouchDB Code
+});
 //code needed for home page goes here
 //GETS data and parses it
 
 //ajax grabing json data
-$('#Jsondata').on('click', function(){ 
-	$('#itemDetails').empty();
-	$.mobile.changePage('#pageView')
+$('#BackpackingBtn').on( 'click',function(){ 
+	$('#itemDetails').empty();   // emty the itemDetails section
+	$.mobile.changePage('#pageView');
 	$.ajax({
-		url        : "xhr/data.json",
-		type       : "GET",
+		url        : "_view/Plans",
 		dataType  : "json",
-		success   : function(jsondata) {
-			for (var i=0, j=jsondata.item.length; i<j; i++) {
-			    var trip = jsondata.item[i];	    
-                $(' '+
-						'<div class="listing">' +
-				          '<h3>' + 'Category: ' + trip.Category +'</h3>' + '<p>' + 'Destination: ' + trip.Destination +'</p>' +
-				          '<p>' + 'startdate: ' + trip.startdate +'</p>' +
-				          '<p>' + 'enddate: ' + trip.enddate +'</p>' +
-				          '<p>' + 'notes: ' + trip.notes  +'</p>' +				         
-				          '<hr />' +
-				        '</div>'
-				    ).appendTo('#itemDetails');
-				}
-			}
-		});
-	});
+		success   : function(data) {
+			$.each(data.rows	, function(index, plan){
+			   // var Category= plan.value.Category;
+			   // var Destination= plan.value.Destination;			   
+	            //var startdate= plan.value.startdate;
+	           // var enddate= plan.value.enddate;
+	           // var notes= plan.value.notes;
+	           // $('#itemDetails').append(
+	            $(''+
+	               ' <li>'+
+	            '<a href="#">' +
+	            '<h1>' + plan.value.Category + '</h1>' +
+	            '<h2>' + plan.value.Destination + '</h2>' +
+	            '<P>' + plan.value.startdate + '</p>' +
+	            '<p>' + plan.value.enddate + '</p>' +   
+	            '<p>' + plan.value.notes + '</P>' +   
+	            '</a>' +
+	            '<li>'    
+	              ).appendTo("#itemDetails");  
+	            
+	            
+	            
+			 
+	      });
+    	$('#itemDetails').listview('refresh');
+    	}
+	});	    
+});		  
+	  
 
-$('#XMLdata').on('click', function(){
+$('#FamilyBtn').on( 'click',function(){ 
 	$('#itemDetails').empty();
-	$.mobile.changePage('#pageView')
+	$.mobile.changePage('#pageView');
 	$.ajax({
-		url        : "xhr/data.xml",
-		type       : "GET",
-		dataType  : "xml",
-		success   : function(xml) {
-		$(xml).find('item').each(function() {
-					var category = $(this).find('category').text();
-					var destination = $(this).find('destination').text();
-					var startdate = $(this).find('startdate').text();
-					var Enddate = $(this).find('Enddate').text();
-					var notes = $(this).find('notes').text();
-					$(''+
-					'<div class="listing">' +
-				          '<h3>' + 'category: ' + category +'</h3>' + '<p>' + 'destination: ' + destination +'</p>' +
-				          '<p>' + 'startdate: ' + startdate +'</p>' + '<p>' + 'Enddate: ' + Enddate +'</p>' +
-				          '<p>' + 'notes: ' + notes  +'</p>' +				         
-				          '<hr />' +
-						'</div>'
-						).appendTo('#itemDetails');
-				});
-			}
+		url        : "_view/planB",
+		dataType  : "json",
+		success   : function(data) {
+			$.each(data.rows	, function(index, planB){
+			   // var Category= planB.value.Category;
+			    //var Destination= planB.value.Destination;			   
+	            //$('#itemDetails').append(
+	            $(''+
+	               ' <li>'+
+	            '<a href="#">' +
+	            '<h3>' + planB.value.Category + '</h3>' +
+	            '<p>' + planB.value.Destination + '</P>' +
+	            '<P>' + planB.value.startdate + '</p>' +
+	            '<p>' + planB.value.enddate + '</p>' +   
+	            '<p>' + planB.value.notes + '</P>' +   
+	            '</a>' +
+	            '<li>'    
+	              ).appendTo("#itemDetails");  
+	            
+	            
+	            
+			 
+	      });
+    	$('#itemDetails').listview('refresh');
+    	}
+	});	    
+});		  
 
-		});
-	});
-
-	$("#yamldata").on("click", function(){
+$('#SurvivalistBtn').on( 'click',function(){ 
+	$('#itemDetails').empty();
+	$.mobile.changePage('#pageView');
 	$.ajax({
-		url        : "xhr/data.yaml",
-		type       : "GET",
-		dataType  : "yaml",
-		success   : function(data, status) {
-			console.log(data, status);
-	    },
-	    error     : function(error, parseerror){
-		    console.log(error, parseerror);
-	    }
-	});
-});
+		url        : "_view/planC",
+		dataType  : "json",
+		success   : function(data) {
+			$.each(data.rows	, function(index, planC){
+			    //var Category= planC.value.Category;
+			    //var Destination= planC.value.Destination;			   
+	             $(''+
+	               ' <li>'+
+	            '<a href="#">' +
+	            '<h3>' + planC.value.Category + '</h3>' +
+	            '<p>' + planC.value.Destination + '</P>' +
+	            '<P>' + planC.value.startdate + '</p>' +
+	            '<p>' + planC.value.enddate + '</p>' +   
+	            '<p>' + planC.value.notes + '</P>' +   
+	            '</a>' +
+	            '<li>'    
+	              ).appendTo("#itemDetails");  
+	            
+	            
+	            
+			 
+	      });
+    	$('#itemDetails').listview('refresh');
+    	}
+	});	    
+});		  
+			  
 
-//console.log("Page one loaded."); 
-});
 
-//Display Local storage 
+
+
+			   ///Display Local storage 
 
 $('#storage').on('click', function(){
 $.mobile.changePage('#pageView');
@@ -199,14 +237,15 @@ var autofillData = function (){
  	 window.location.reload(); 	   
 
 };
-//var submit = $('#submit');
+//var submit = $('#submit'){
 	//submit.on('click', storeData); 
 	
  //window.location.reload();
 
-
+//});
 
 $('#pageView').on('pageinit', function(){
+
 });	
 
 
