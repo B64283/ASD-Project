@@ -5,14 +5,10 @@
 
 $(document).on('pageinit', '#page1', function(){
  // CouchDB Code
-    $.couch.db("campingplannerasd").view("/app/plans", {
-       success: function(data) {
-         console.log(data);
-       }
-    });
 });
 
-
+$('document').on('pageinit', '#addItem', function(){
+console.log("Form loaded.");
 /*
 //code needed for home page goes here
 //GETS data and parses it
@@ -135,16 +131,109 @@ $('#SurvivalistBtn').on( 'click',function(){
      ///Display Local storage  
  */    
      
-     
-     
-     
-            
+ var myForm = $('#campingForm');
+		      //tterrorsLink	= $ ("#tterrorsLink");	    
+		    myForm.validate({
+			invalidHandler: function(form, validator) {},
+/*tterrorsLink.click();
+			     //var html= ' ';
+			    //for(var key in validator.submitted){
+			       // var label = $(' label[for^=" ' + key +' "]'); 
+		          //var legend = label.closest('fieldset').find('.label');
+			                    //var fieldName = legend.length ? legend.text() : label.text(); 
+			                     //html += '<li>'+ fieldName +'</li>';  
+			
+			                   */  //$("#TravelTypeErrors ul").html(html);
+			
+			    submitHandler: function() {
+		        var sData = myForm.serializeArray();
+			         saveData(sData);
+        }
+    });
+
+
+		//--any other code needed for addItem page goes here--//
+
+    
+ 
+function saveData(sData){
+        var sData = {}; 
+            sData.Category = $('#Category').val();
+	        sData.Destination= $('#Destination').val();
+	        sData.startdate= $('#startdate').val();
+	        sData.enddate= $('#enddate').val();
+	        sData.notes= $('#notes').val();
+	        console.log(sData);            
 			  
+           //--Save into couch--//
+		$.couch.db("campingplannerasd").saveDoc({
+			   "_id": "Category:" + sData.Category,
+			   "Category": sData.Category,
+			   "Destination": sData.Destination,
+			   "startdate": sData.startdate,
+			   "enddate": sData.enddate,
+			   "notes": sData.notes
+			 },{
+			    	success: function(sData) {
+			    		console.log(sData);
+			    		alert('Plan has been saved');
+			        	$.mobile.changePage($('#pageview'));
+			    	}
+			    });
+			  $('#addItem').listview('refresh');
+		}
+			var save = $('submit');
+			$('#submit').on('click', saveData);
 
+}); //--end addItem function--//
 
+$(document).on('pageinit', '#pageview', function(){
+	$.couch.db("campingplanner").view("app/view", {
+		success: function(sData){
+			console.log(sData);
+			$('#Itemdetails').empty();
+			$.each(sData.rows, function(index, eData){
+				var Category = eData.value.Category;
+				var Destination = eData.value.Destination;
+				var startdate = eData.value.startdate;
+				var enddate = eData.value.enddate;
+				var notes = eData.value.notes;
+				var id = eData.id;
+				var rev = eData.value.rev;
+				   
+				    $(''+
+					    '<li>' +
+					        '<h3>' + Category +'</h3>' +
+					        '<p>' + 'Destination: ' + Destination + '</p>' +
+					        '<p>' + 'startdate: ' + startdate + '</p>' +
+							'<p>' + 'enddate: ' + enddate + '</p>' +							
+							'<p>' + 'notes: ' + notes + '</p>' +							
+							'<hr />' +
+				         '</li>'
+				        ).appendTo('#Itendetails');
+			   
+       
+       // create edit link
+				var editLink = $('<a>');
+				editLink.attr("href", "#");
+				var editText = "Edit plan";
+				editLink.on("click", editItem);
+				editLink.text(editText);
+				editLink.appendTo(Itemdetails);
 
-			   ///Display Local storage 
+				//break between edit and delete
+				var breakTag = document.createElement('br');
+				editLink.append(breakTag);
 
+				//delete link
+				var deleteLink = $('<a>');
+				deleteLink.attr("href", "#");
+				var deleteText = "Delete plan";
+				deleteLink.on("click", deleteItem);
+				deleteLink.text(deleteText);
+				deleteLink.appendTo(Itemdetails);
+
+       
 /*$('#storage').on('click', function(){
 $.mobile.changePage('#pageView');
 		//Empty the div to 
@@ -176,15 +265,15 @@ $.mobile.changePage('#pageView');
            //delete function
  var deleteData = function(delData) {
 	$.couch.db("campinplannerasd").removeDoc(key, function() {
-		//success: function(deData) {
+		success: function(delData) {
 		    console.log('Plan Deleted');
-		    
+		  }  
 			$('#pageView').listview('refresh');
-			console.log(deData);
+			console.log(delData);
 		},
 		error: function() {
 		console.log(Plan was not deleted);
-		//}
+		}
 	$('delete').on('click', function() {
         var id = $(this).data('id');
         var rev = $(this).data('rev');
@@ -233,8 +322,6 @@ $.mobile.changePage('#pageView');
 	});
 
 */
-$('document').on('pageinit', '#addItem', function(){
-console.log("Form loaded.");
 //The functions below can go inside or outside the pageinit function for the page in which it is needed.
 //var autofillData = function (){
 //};
@@ -245,58 +332,43 @@ console.log("Form loaded.");
 	var data={};
 	data.key= key;
 	
-	savdData.Category = $('#Category').val();
-	savdData.Destination= $('#Destination').val();
-	savdData.startdate= $('#startdate').val();
-	savdData.enddate= $('#enddate').val();
-	savdData.notes= $('#notes').val();
-	console.log(savdData);
+	sData.Category = $('#Category').val();
+	sData.Destination= $('#Destination').val();
+	sData.startdate= $('#startdate').val();
+	sData.enddate= $('#enddate').val();
+	sData.notes= $('#notes').val();
+	console.log(sData);
 	//localStorage.steItem(key, JSONStringify(data));
-	var doc = {};
-        $.couch.db("campingplannerasd").saveDoc(doc, {
-        "_id": "Category": savdData.Category,
-        "Category":    savdData.Category,
-        "Destination":   savdData.Destination,
-        "start date":    savdData.startdate,
-        "enddate":     savdData.enddate;
-        "notes":    savdData.notes               
-     }      ,{  success: function(savdData) {
-      console.log('data has been saved: ' + savdData);
-         alert('Plan Saved');
-            window.location.reload();    
-    },
-    });
-    $('#addItem').listview('refresh');
-     }
-  var submit = $('#submit'){
-	submit.on('click', saveData); 
 	
-  }
+function editItem(sData) {
 
-});
+				var sData = {};
+					$('#eCategory').val(Category);
+					$('#Destination').val(Destination);
+					$('#startdate').val(startdate);
+					$('#enddate').val(enddate);
+					$('#notes').val(notes);
 
- var myForm = $('#campingForm');
-		    tterrorsLink	= $ ("#tterrorsLink");	    
-		    myForm.validate({
-			invalidHandler: function(form, validator) {
-			tterrorsLink.click();
-			     //var html= ' ';
-			    for(var key in validator.submitted){
-			        var label = $(' label[for^=" ' + key +' "]'); 
-			       //var legend = label.closest('fieldset').find('.label');
-			       //var fieldName = legend.length ? legend.text() : label.text(); 
-			       //html += '<li>'+ fieldName +'</li>';  
-			     };
-			    //$("#TravelTypeErrors ul").html(html);
-			},
-			submitHandler: function(form) {
-		        var data = myForm.serializeArray();
-			saveData(key);
-		});
-		//any other code needed for addItem page goes here
+					//Save into couch
+			        $.couch.db("campingplannerasd").saveDoc(sData, {
 
-});
-                	  
+			        	success: function(sData) {
+			        		console.log(sData);
+			        		$.mobile.changePage($('#addItem'));
+			        	},
+			        	error: function(sData) {
+			        		console.log(status);
+			        	}
+		        	});
+					$.mobile.changePage($('#addItem'));
+
+				}
+			});
+			$('#Itemdetails').listview('refresh');
+		}
+	});
+});		
+                 	  
 /*  var storeData = function (key, value){
 	if($('#key').val() == '') {
 		var randomID = Math.floor(Math.random()*10000001);
